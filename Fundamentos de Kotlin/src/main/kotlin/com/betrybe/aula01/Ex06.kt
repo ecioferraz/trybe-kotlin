@@ -1,4 +1,4 @@
-package com.betrybe.aula02
+package com.betrybe.aula01
 
 fun main() {
     print("Digite o primeiro número: ")
