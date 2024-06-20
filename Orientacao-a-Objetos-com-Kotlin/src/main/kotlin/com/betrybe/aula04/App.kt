@@ -1,52 +1,56 @@
 package com.betrybe.aula04
 
-abstract class Animal {
-    abstract val race: String
+interface OnClickListener {
+    fun onClick ()
+}
 
-    open fun eat () {
-        println("Ate!")
+//class Main {
+//    init {
+//        button.setOnClickListener(object: OnClickListener {
+//            override fun onClick() {
+//                TODO("Not yet implemented")
+//            }
+//        })
+//    }
+//}
+
+class Me
+
+object DBConn {
+    var instance: Me? = null
+
+    fun init (): Me? {
+        if (instance === null) {
+            instance = Me()
+        }
+
+        return instance!!
     }
 }
 
-class Rabbit: Animal() {
-    override val race: String
-        get() = TODO("Not yet implemented")
-
-    override fun eat() {
-        TODO("Not yet implemented")
-    }
+enum class WeekDays {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY
 }
 
-class Cat: Animal() {
-    override val race: String
-        get() = TODO("Not yet implemented")
+enum class Colors (val hex: String) {
+    RED("FF0000"),
+    GREEN("#00FF00"),
+    BLUE("0000FF"),
+    WHITE("#FFFFFF"),
+    BLACK("#000000")
 }
 
-class Person (val name: String, var age: Int) {
-
-    fun printName() {
-        println(name)
-    }
-
-    fun printAge() {
-        println(age)
-    }
-
-    fun ageUp() {
-        age += 1
-    }
-}
+data class User (
+    val name: String,
+    val age: Int
+)
 
 fun main () {
-    val me = Person("Écio Ferraz", 32)
+    println(Colors.RED.hex)
 
-    println(me.name)
-    println(me.age)
-
-    me.printAge()
-    me.printName()
-
-    me.ageUp()
-
-    me.printAge()
+    println(DBConn.init())
 }

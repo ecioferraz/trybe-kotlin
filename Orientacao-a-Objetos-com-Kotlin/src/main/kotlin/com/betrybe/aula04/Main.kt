@@ -1,33 +1,59 @@
 package com.betrybe.aula04
 
-import kotlin.math.pow
-
-interface Form2D {
-//    fun calcArea (): Double
-
-    var area: Double
+interface Notification {
+    fun sendMessage (message: String)
 }
 
-class Rectangle(val width: Double, val height: Double): Form2D {
-    //    override fun calcArea(): Double = width * height
-
-    override var area: Double
-        get() = width * height
-        set(value) {}
+open class EmailNotification: Notification {
+    override fun sendMessage(message: String) {
+        println("Enviando e-mail: $message")
+    }
 }
 
-class Circle(val radius: Double): Form2D {
-    //    override fun calcArea(): Double = Math.PI * radius.pow(2.0)
-
-    override var area: Double
-        get() = Math.PI * radius.pow(2.0)
-        set(value) {}
+open class SMSNotification: Notification {
+    override fun sendMessage(message: String) {
+        println("Enviando SMS: $message")
+    }
 }
+
+open class WhatsAppNotification: Notification {
+    override fun sendMessage(message: String) {
+        println("Enviando WhatsApp: $message")
+    }
+}
+
+class NotificationSystem(val type: Notification): Notification  {
+    override fun sendMessage(message: String) {
+        this.sendMessage(message)
+    }
+}
+
+class NotificationSystemDelegate (val type: Notification): Notification by type
 
 fun main () {
-    val rectangleArea = Rectangle(3.0, 5.0)
-    val circleArea = Circle(10.0)
+//    val emailNotification = EmailNotification()
+//
+//    var notificationSystem = NotificationSystemDelegate(emailNotification)
+//
+//    notificationSystem.sendMessage("Um erro ocorreu")
+//
+//    val smsNotification = SMSNotification()
+//
+//    notificationSystem = NotificationSystemDelegate(smsNotification)
+//
+//    notificationSystem.sendMessage("Um erro ocorreu")
+//
+//    val whastAppNotification = WhatsAppNotification()
+//
+//    notificationSystem = NotificationSystemDelegate(whastAppNotification)
+//
+//    notificationSystem.sendMessage("Um erro ocorreu")
 
-    println(rectangleArea.area)
-    println(circleArea.area)
+    val name: String by lazy {
+        println("Olá")
+        "Écio"
+    }
+
+    println(name)
+    println(name)
 }
